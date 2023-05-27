@@ -69,7 +69,7 @@ class Editor
 		
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		
+
 		// add files button
 		
 		JButton btn_add_files = new JButton();//creating instance of JButton  
@@ -107,12 +107,12 @@ class Editor
 
 		// configure frame and display
 		
+		this.shared.frame.setJMenuBar(menuBar); // bind the menu bar to this canvas
 		this.shared.frame.setTitle(".Obj to Bullet Physics .vpos Generator");
 		this.shared.frame.setSize(this.canvas_width,this.canvas_height);
 		this.shared.frame.setLayout(null);//using no layout managers  
-		this.shared.frame.setVisible(true);//making the frame visible  
-		this.shared.frame.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
-		this.shared.frame.setJMenuBar(menuBar); // bind the menu bar to this canvas
+		this.shared.frame.setVisible(true);//make the frame visible  
+		this.shared.frame.setLocationRelativeTo(null); // c
 
 		this.shared.frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
