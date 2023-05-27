@@ -1,11 +1,7 @@
 package pkg_main;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.util.ArrayList;
-
 import javax.swing.AbstractAction;
-import javax.swing.JFrame;
 
 /**
  * 

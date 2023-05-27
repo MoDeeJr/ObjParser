@@ -8,9 +8,9 @@ package pkg_main;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
-import java.io.IOException;
 
 class EditorShared
 {
@@ -63,10 +63,17 @@ class Editor
 		this.shared.list_label.setVerticalAlignment(JLabel.TOP);
 		this.shared.list_label.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
+		menuBar.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		JMenu fileMenu = new JMenu("File");
+		menuBar.add(fileMenu);
+		
 		// add files button
 		
 		JButton btn_add_files = new JButton();//creating instance of JButton  
-		OpenFilesAction add_files_action = new OpenFilesAction(this.shared);
+		OpenFilesAction add_files_action = new OpenFilesAction(this.shared); // associate action to this button
 		btn_add_files.setAction(add_files_action);
 		btn_add_files.setText("add files");
 		btn_add_files.setBounds((int) (this.canvas_width * 0.25 - 50.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
@@ -87,20 +94,25 @@ class Editor
 		btn_reset.setText("clear queue");
 		btn_reset.setBounds((int) (this.canvas_width * 0.75 - 75.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,150, 25);//x axis, y axis, width, height  
 				
-		// add content
+		// add content to the canvas & menu bar
 		
-		this.shared.frame.add(btn_generate);
-		this.shared.frame.add(btn_reset);
-		this.shared.frame.add(btn_add_files);
+		//this.shared.frame.add(btn_generate);
+		//this.shared.frame.add(btn_reset);
+		//this.shared.frame.add(btn_add_files);
 		this.shared.frame.add(this.shared.list_label);
+		
+		fileMenu.add(btn_add_files);
+		fileMenu.add(btn_generate);
+		fileMenu.add(btn_reset);
 
-		// configure frame
+		// configure frame and display
 		
 		this.shared.frame.setTitle(".Obj to Bullet Physics .vpos Generator");
 		this.shared.frame.setSize(this.canvas_width,this.canvas_height);
 		this.shared.frame.setLayout(null);//using no layout managers  
 		this.shared.frame.setVisible(true);//making the frame visible  
 		this.shared.frame.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+		this.shared.frame.setJMenuBar(menuBar); // bind the menu bar to this canvas
 
 		this.shared.frame.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override

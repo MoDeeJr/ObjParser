@@ -6,7 +6,6 @@ package pkg_main;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
-import javax.swing.JFrame;
 import java.io.File; // Import the File class
 import java.io.FileNotFoundException;
 import java.util.Scanner; // Import the Scanner class to read text files
