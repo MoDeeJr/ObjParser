@@ -17,7 +17,7 @@ import java.util.Scanner; // Import the Scanner class to read text files
  */
 class GenerateAction extends AbstractAction {
 
-	ArrayList<String> ref_data;
+	ArrayList<File> ref_data;
 	JFrame ref_frame;
 
 	/**
@@ -25,9 +25,31 @@ class GenerateAction extends AbstractAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GenerateAction(ArrayList<String> in_data, JFrame parent_frame) {
+	public GenerateAction(ArrayList<File> in_data, JFrame parent_frame) {
 		this.ref_data = in_data;
 		this.ref_frame = parent_frame;
+	}
+	
+	private String trim_file_extension(String filename)
+	{
+		String result = "";
+		
+		int[] c_result = filename.chars().toArray();
+		
+		for(int i = 0; i < filename.length(); i++)
+		{
+			if((char) c_result[i] != '.') 
+			{
+				result += (char) c_result[i]; 
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		return result;
+
 	}
 
 	@Override
@@ -39,23 +61,25 @@ class GenerateAction extends AbstractAction {
 		}
 
 		for (int i = 0; i < this.ref_data.size(); i++) {
-			String ref_file = this.ref_data.get(i);
+			File ref_file = this.ref_data.get(i);
 
-			System.out.println("Processing file: " + ref_file);
+			System.out.println("Processing file: " + ref_file.getPath());
 
 			this.read_file(ref_file);
 		}
 
 	}
 
-	private void read_file(String file) {
-		File myObj = new File(file);
+	private void read_file(File in_file) {
+		
+		File myObj = in_file;
 
 		ArrayList<Vec3> src_vertex_positions = new ArrayList<Vec3>();
 		ArrayList<Vec3> vertex_positions = new ArrayList<Vec3>();
 
+		// read file, and generate source, unique vertex positions
+		
 		Scanner myReader;
-		Scanner myReader2;
 		try {
 			myReader = new Scanner(myObj);
 
@@ -79,6 +103,11 @@ class GenerateAction extends AbstractAction {
 				// System.out.println(my_line);
 
 			}
+			
+			myReader.close();
+			
+			// read file again, but process "faces" to generate raw set of all vertex positions
+			Scanner myReader2;
 
 			myReader2 = new Scanner(myObj);
 
@@ -106,16 +135,20 @@ class GenerateAction extends AbstractAction {
 					Vec3 ref_vec_3 = src_vertex_positions.get(index);
 					vertex_positions.add(ref_vec_3);
 				}
-
-				File out_file = new File("out.txt");
-				Scanner my_writer = new Scanner(out_file);
-				
-				
+								
 				// System.out.println(my_line);
 
 				//System.out.println("vpos size: " + vertex_positions.size());
 
 			}
+			
+			myReader2.close();
+			
+			// generate "out" file based on processed data
+			
+			String out_file_name = this.trim_file_extension(in_file.getName()) + ".vpos";
+			System.out.println("Out file: " + out_file_name);
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

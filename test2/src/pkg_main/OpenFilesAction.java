@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 class OpenFilesAction extends AbstractAction
 {
-	ArrayList<String> ref_data;
+	ArrayList<File> ref_data;
 	JFrame ref_frame;
 
 	/**
@@ -18,33 +18,12 @@ class OpenFilesAction extends AbstractAction
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public OpenFilesAction(ArrayList<String> in_data, JFrame parent_frame)
+	public OpenFilesAction(ArrayList<File> in_data, JFrame parent_frame)
 	{
 		this.ref_data = in_data;
 		this.ref_frame = parent_frame;
 	}
-	
-	private String trim_file_extension(String filename)
-	{
-		String result = "";
-		
-		int[] c_result = filename.chars().toArray();
-		
-		for(int i = 0; i < filename.length(); i++)
-		{
-			if((char) c_result[i] != '.') 
-			{
-				result += (char) c_result[i]; 
-			}
-			else
-			{
-				break;
-			}
-		}
-		
-		return result;
 
-	}
 	
 	public void openDirectory() {
 		JFileChooser fileChooser = new JFileChooser();
@@ -57,23 +36,17 @@ class OpenFilesAction extends AbstractAction
 		}
 		
 		File[] files = fileChooser.getSelectedFiles();
-		System.out.println(files.length);
 	
 		for(int i = 0; i < files.length; i++)
 		{
-			this.ref_data.add(files[i].getPath());
+			this.ref_data.add(files[i]); // register our chosen file
 			
-			String path = files[i].getPath();
-			String filename = files[i].getName();
-			
-			System.out.println(path);
-			System.out.println(filename);
-			System.out.println(this.trim_file_extension(filename));
+			System.out.println("Selected file: " + files[i].getPath());
 
 			//System.out.println(path.substring(files[i].getPath().lastIndexOf("\\")+1));
 		}
 		
-		System.out.println(this.ref_data);
+		System.out.println("All Files (" + this.ref_data.size() + "): " + this.ref_data);
 	  }
 
 	@Override

@@ -5,40 +5,10 @@
 
 package pkg_main;
 
-import java.awt.Desktop;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import java.io.File;
 
-
-class ClearQueueAction extends AbstractAction
-{
-	ArrayList<String> ref_data;
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2L;
-
-	public ClearQueueAction(ArrayList<String> in_string)
-	{
-		super();
-		//System.out.println(in_string);
-		this.ref_data = in_string;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		this.ref_data.clear();
-		System.out.println("Queue cleared.");
-	}
-	
-}
 
 class Editor
 {
@@ -47,19 +17,17 @@ class Editor
 	int canvas_height = 600;
 	
 	JFrame frame;
-	
-	ArrayList<String> files;
+	ArrayList<File> my_files;
 	
 	public Editor() // constructor
 	{
 		this.frame = new JFrame();//creating instance of JFrame  
-		
-		this.files = new ArrayList<String>();
+		this.my_files = new ArrayList<File>();
 		
 		// add files button
 		
 		JButton add_files_button = new JButton();//creating instance of JButton  
-		OpenFilesAction add_files_action = new OpenFilesAction(this.files, this.frame);
+		OpenFilesAction add_files_action = new OpenFilesAction(this.my_files, this.frame);
 		add_files_button.setAction(add_files_action);
 		add_files_button.setText("add files");
 		add_files_button.setBounds((int) (this.canvas_width * 0.25 - 50.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
@@ -67,8 +35,7 @@ class Editor
 		// generate button
 		
 		JButton b = new JButton();//creating instance of JButton  
-		GenerateAction g_action = new GenerateAction(this.files, this.frame);
-		
+		GenerateAction g_action = new GenerateAction(this.my_files, this.frame);
 		b.setAction(g_action);
 		b.setText("generate");
 		b.setBounds(this.canvas_width / 2 - 50, (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
@@ -76,8 +43,7 @@ class Editor
 		// clear items button
 		
 		JButton reset_queue_button = new JButton();//creating instance of JButton  
-		ClearQueueAction clear_action = new ClearQueueAction(this.files);
-		
+		ClearQueueAction clear_action = new ClearQueueAction(this.my_files);
 		reset_queue_button.setAction(clear_action);
 		reset_queue_button.setText("clear queue");
 		reset_queue_button.setBounds((int) (this.canvas_width * 0.75 - 75.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,150, 25);//x axis, y axis, width, height  
