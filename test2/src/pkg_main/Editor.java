@@ -35,6 +35,7 @@ class ClearQueueAction extends AbstractAction
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.ref_data.clear();
+		System.out.println("Queue cleared.");
 	}
 	
 }
@@ -80,31 +81,6 @@ class OpenFilesAction extends AbstractAction
 	}
 }
 
-class PrintAction extends AbstractAction
-{
-
-	ArrayList<String> ref_data;
-	JFrame ref_frame;
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	public PrintAction(ArrayList<String> in_data, JFrame parent_frame)
-	{
-		this.ref_data = in_data;
-		this.ref_frame = parent_frame;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("button clicked.");
-	}
-	
-}
-
 class Editor
 {
 	
@@ -132,9 +108,9 @@ class Editor
 		// generate button
 		
 		JButton b = new JButton();//creating instance of JButton  
-		PrintAction p_action = new PrintAction(this.files, this.frame);
+		GenerateAction g_action = new GenerateAction(this.files, this.frame);
 		
-		b.setAction(p_action);
+		b.setAction(g_action);
 		b.setText("generate");
 		b.setBounds(this.canvas_width / 2 - 50, (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
 		

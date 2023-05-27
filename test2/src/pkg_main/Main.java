@@ -13,10 +13,7 @@ public class Main {
 		
 		while(true)
 		{
-			if(e.files != null)
-			{
-				//System.out.println(e.files);
-			}
+			// todo.
 		}
 							
 	}
