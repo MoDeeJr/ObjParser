@@ -40,47 +40,6 @@ class ClearQueueAction extends AbstractAction
 	
 }
 
-class OpenFilesAction extends AbstractAction
-{
-	ArrayList<String> ref_data;
-	JFrame ref_frame;
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	public OpenFilesAction(ArrayList<String> in_data, JFrame parent_frame)
-	{
-		this.ref_data = in_data;
-		this.ref_frame = parent_frame;
-	}
-	
-	public void openDirectory() {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-		fileChooser.setMultiSelectionEnabled(true);
-		int result = fileChooser.showOpenDialog(this.ref_frame);
-		if (result == JFileChooser.APPROVE_OPTION) {
-			File[] files = fileChooser.getSelectedFiles();
-			System.out.println(files.length);
-		
-			for(int i = 0; i < files.length; i++)
-			{
-				this.ref_data.add(files[i].getPath());
-			}
-		}
-		
-		System.out.println(this.ref_data);
-	  }
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		this.openDirectory();
-	}
-}
-
 class Editor
 {
 	
