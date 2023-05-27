@@ -1,6 +1,6 @@
 package pkg_main;
 
-//import test2.Editor; // don't need import, as classes exist in same package
+//import pkg_main.Editor; // don't need import, as classes exist in same package
 
 public class Main {
 	

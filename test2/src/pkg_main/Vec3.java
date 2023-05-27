@@ -1,5 +1,10 @@
 package pkg_main;
 
+/**
+ * 
+ * basic representation of a math 3D Vector
+ *
+ */
 public class Vec3 {
 
 	public float x = 0.0f;

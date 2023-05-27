@@ -17,7 +17,8 @@ import java.io.UnsupportedEncodingException;
  *
  */
 class GenerateAction extends AbstractAction {
-	EditorShared shared;
+	
+	EditorShared shared; // reference to EditorShared data
 
 	/**
 	 * 
@@ -36,14 +37,12 @@ class GenerateAction extends AbstractAction {
 		
 		for(int i = 0; i < filename.length(); i++)
 		{
-			if((char) c_result[i] != '.') 
-			{
-				result += (char) c_result[i]; 
-			}
-			else
+			if((char) c_result[i] == '.') 
 			{
 				break;
 			}
+			result += (char) c_result[i]; 
+
 		}
 		
 		return result;

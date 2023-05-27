@@ -34,6 +34,8 @@ class Editor
 	
 	public Editor() // constructor
 	{
+		
+		// use "modern", but default ui theme/appearance
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -50,50 +52,52 @@ class Editor
 			e.printStackTrace();
 		}
 
+		// init
+		
 		this.shared = new EditorShared();
 		
 		this.shared.frame = new JFrame();//creating instance of JFrame  
 		this.shared.my_files = new ArrayList<File>();
-		this.shared.list_label = new JLabel("no files selected.");
+		this.shared.list_label = new JLabel("no files selected."); // shared "multi-line" label
 		this.shared.list_label.setBounds(0,0, this.canvas_width, this.canvas_height);
 		this.shared.list_label.setVerticalAlignment(JLabel.TOP);
 		this.shared.list_label.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
 		
 		// add files button
 		
-		JButton add_files_button = new JButton();//creating instance of JButton  
+		JButton btn_add_files = new JButton();//creating instance of JButton  
 		OpenFilesAction add_files_action = new OpenFilesAction(this.shared);
-		add_files_button.setAction(add_files_action);
-		add_files_button.setText("add files");
-		add_files_button.setBounds((int) (this.canvas_width * 0.25 - 50.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
+		btn_add_files.setAction(add_files_action);
+		btn_add_files.setText("add files");
+		btn_add_files.setBounds((int) (this.canvas_width * 0.25 - 50.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
 
 		// generate button
 		
-		JButton b = new JButton();//creating instance of JButton  
+		JButton btn_generate = new JButton();//creating instance of JButton  
 		GenerateAction g_action = new GenerateAction(this.shared);
-		b.setAction(g_action);
-		b.setText("generate");
-		b.setBounds(this.canvas_width / 2 - 50, (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
+		btn_generate.setAction(g_action);
+		btn_generate.setText("generate");
+		btn_generate.setBounds(this.canvas_width / 2 - 50, (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
 		
 		// clear items button
 		
-		JButton reset_queue_button = new JButton();//creating instance of JButton  
+		JButton btn_reset = new JButton();//creating instance of JButton  
 		ClearQueueAction clear_action = new ClearQueueAction(this.shared);
-		reset_queue_button.setAction(clear_action);
-		reset_queue_button.setText("clear queue");
-		reset_queue_button.setBounds((int) (this.canvas_width * 0.75 - 75.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,150, 25);//x axis, y axis, width, height  
+		btn_reset.setAction(clear_action);
+		btn_reset.setText("clear queue");
+		btn_reset.setBounds((int) (this.canvas_width * 0.75 - 75.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,150, 25);//x axis, y axis, width, height  
 				
 		// add content
 		
-		this.shared.frame.add(b);
-		this.shared.frame.add(reset_queue_button);
-		this.shared.frame.add(add_files_button);
+		this.shared.frame.add(btn_generate);
+		this.shared.frame.add(btn_reset);
+		this.shared.frame.add(btn_add_files);
 		this.shared.frame.add(this.shared.list_label);
 
 		// configure frame
 		
-		this.shared.frame.setTitle("Vpos Generator");
-		this.shared.frame.setSize(this.canvas_width,this.canvas_height);//400 width and 500 height  
+		this.shared.frame.setTitle(".Obj to Bullet Physics .vpos Generator");
+		this.shared.frame.setSize(this.canvas_width,this.canvas_height);
 		this.shared.frame.setLayout(null);//using no layout managers  
 		this.shared.frame.setVisible(true);//making the frame visible  
 		this.shared.frame.setLocationRelativeTo(null); // this method display the JFrame to center position of a screen

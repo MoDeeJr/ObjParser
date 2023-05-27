@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
@@ -29,9 +31,33 @@ class OpenFilesAction extends AbstractAction
 	{
 		this.shared = in_shared;
 	}
+	
+	private String get_file_type(String filename)
+	{
+		String type = "";
+		
+		int[] c_result = filename.chars().toArray();
+
+		boolean capture = false;
+		for(int i = 0; i < c_result.length; i++)
+		{
+			if(capture) {
+				type += (char) c_result[i];
+			}
+			
+			if(c_result[i] == '.')
+			{
+				capture = true;
+			}
+		}
+		
+		return type;
+	}
 
 	public void openDirectory() {
 		
+		// get selected files using FileChooser (Windows browse)
+
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 		fileChooser.setMultiSelectionEnabled(true);
@@ -40,38 +66,38 @@ class OpenFilesAction extends AbstractAction
 		{
 			return;
 		}
-		
-		// get chosen files using FileChooser (Windows browse)
-		
+				
 		File[] files = fileChooser.getSelectedFiles();
-
-		// display the files into a "multi-line" JLabel (uses <html> & <br> workaround to emulate "multi-line")
+		
+		// copy our files and store internally; needs to be processed later; ignore non .obj files
+		
+		for(int i = 0; i < files.length; i++)
+		{
+			String fn = files[i].getName();
+			
+			if(this.get_file_type(fn).equals("obj")) {
+				this.shared.my_files.add(files[i]);
+			}	
+		}		
+		System.out.println("All Files (" + this.shared.my_files.size() + "): " + this.shared.my_files);
+		
+		// pack the files into a "multi-line" JLabel (uses <html> & <br> workaround to emulate "multi-line")
 		
 		this.shared.list_label.setText("");
 		
-		String new_list = "<html>";
-		for(int i = 0; i < files.length; i++)
+		String list_of_files = "<html>";
+		for(int i = 0; i < this.shared.my_files.size(); i++)
 		{
-			new_list += files[i].getName() + "<br/>";
+			File my_file = this.shared.my_files.get(i);
+			list_of_files += my_file.getName() + "<br/>";
 		}
-		new_list += "</html>";
+		list_of_files += "</html>";
 		
-		this.shared.list_label.setText(new_list);
-		
-		// register files internally (they will be processed later)
-		for(int i = 0; i < files.length; i++)
-		{
-			this.shared.my_files.add(files[i]); // register our chosen file
-			
-			System.out.println("Selected file: " + files[i].getPath());
-		}
-		
-		System.out.println("All Files (" + this.shared.my_files.size() + "): " + this.shared.my_files);
+		this.shared.list_label.setText(list_of_files);
 	  }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		this.openDirectory();
 	}
 }
