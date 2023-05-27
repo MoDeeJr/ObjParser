@@ -5,13 +5,13 @@ package pkg_main;
 public class Main {
 	
 	public static Editor e; 
+	
 	// Program Entry Point
 	public static void main(String[] args) {
 		
-		e = new Editor();
-		
 		System.out.println("Editor constructed.");
-		
-							
+
+		e = new Editor();
+									
 	}
 }

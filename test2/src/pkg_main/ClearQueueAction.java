@@ -5,27 +5,28 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.JFrame;
 
 class ClearQueueAction extends AbstractAction
 {
-	ArrayList<File> ref_data;
+	EditorShared shared;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2L;
 
-	public ClearQueueAction(ArrayList<File> in_string)
+	public ClearQueueAction(EditorShared in_shared)
 	{
 		super();
-		//System.out.println(in_string);
-		this.ref_data = in_string;
+		this.shared = in_shared;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		this.ref_data.clear();
+		
+		this.shared.my_files.clear();
+		this.shared.list_label.setText("file queue cleared. select additional files.");
 		System.out.println("Queue cleared.");
 	}
 	
