@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 
+/**
+ * 
+ * Simple action to clear an internally stored file list in EditorShared.my_files
+ */
 class ClearQueueAction extends AbstractAction
 {
 	EditorShared shared;

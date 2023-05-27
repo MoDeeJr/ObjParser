@@ -46,7 +46,6 @@ class GenerateAction extends AbstractAction {
 		}
 		
 		return result;
-
 	}
 
 	@Override
@@ -69,7 +68,7 @@ class GenerateAction extends AbstractAction {
 			File ref_file = this.shared.my_files.get(i);
 
 			System.out.println("Processing file: " + ref_file.getPath());
-
+			
 			this.process_file(ref_file);
 		}
 		

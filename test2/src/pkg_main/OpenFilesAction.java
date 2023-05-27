@@ -38,7 +38,7 @@ class OpenFilesAction extends AbstractAction
 		
 		int[] c_result = filename.chars().toArray();
 
-		boolean capture = false;
+		boolean capture = false; // only capture characters after '.'
 		for(int i = 0; i < c_result.length; i++)
 		{
 			if(capture) {
@@ -80,9 +80,16 @@ class OpenFilesAction extends AbstractAction
 			}	
 		}		
 		System.out.println("All Files (" + this.shared.my_files.size() + "): " + this.shared.my_files);
+	
+		this.update_ui_listing();
 		
-		// pack the files into a "multi-line" JLabel (uses <html> & <br> workaround to emulate "multi-line")
-		
+	  }
+	
+/**
+ * pack the files into a "multi-line" JLabel (uses html & br workaround to emulate "multi-line")
+ */
+	private void update_ui_listing()
+	{		
 		this.shared.list_label.setText("");
 		
 		String list_of_files = "<html>";
@@ -94,7 +101,7 @@ class OpenFilesAction extends AbstractAction
 		list_of_files += "</html>";
 		
 		this.shared.list_label.setText(list_of_files);
-	  }
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
