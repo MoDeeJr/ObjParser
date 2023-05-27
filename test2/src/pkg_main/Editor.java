@@ -64,10 +64,10 @@ class Editor
 		this.shared.list_label.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
 		menuBar.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu("FILE");
+		fileMenu.setFont(new Font("Serif", Font.TRUETYPE_FONT, 14));
 		menuBar.add(fileMenu);
 
 		// add files button: allows user to choose files
