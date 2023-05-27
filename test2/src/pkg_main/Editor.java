@@ -70,35 +70,29 @@ class Editor
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
 
-		// add files button
+		// add files button: allows user to choose files
 		
 		JButton btn_add_files = new JButton();//creating instance of JButton  
 		OpenFilesAction add_files_action = new OpenFilesAction(this.shared); // associate action to this button
 		btn_add_files.setAction(add_files_action);
 		btn_add_files.setText("add files");
-		btn_add_files.setBounds((int) (this.canvas_width * 0.25 - 50.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
 
-		// generate button
+		// generate button: processes the user selection of files
 		
 		JButton btn_generate = new JButton();//creating instance of JButton  
 		GenerateAction g_action = new GenerateAction(this.shared);
 		btn_generate.setAction(g_action);
 		btn_generate.setText("generate");
-		btn_generate.setBounds(this.canvas_width / 2 - 50, (int) (this.canvas_height - this.canvas_height * 0.15) ,100, 25);//x axis, y axis, width, height  
 		
-		// clear items button
+		// clear items button: removes any selected files
 		
 		JButton btn_reset = new JButton();//creating instance of JButton  
 		ClearQueueAction clear_action = new ClearQueueAction(this.shared);
 		btn_reset.setAction(clear_action);
 		btn_reset.setText("clear queue");
-		btn_reset.setBounds((int) (this.canvas_width * 0.75 - 75.0), (int) (this.canvas_height - this.canvas_height * 0.15) ,150, 25);//x axis, y axis, width, height  
 				
 		// add content to the canvas & menu bar
-		
-		//this.shared.frame.add(btn_generate);
-		//this.shared.frame.add(btn_reset);
-		//this.shared.frame.add(btn_add_files);
+
 		this.shared.frame.add(this.shared.list_label);
 		
 		fileMenu.add(btn_add_files);
