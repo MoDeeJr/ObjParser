@@ -1,5 +1,5 @@
 # ObjParser
-Small, custom Application built entirely with Java. Has a front-end GUI to process 3D files of type .obj. It parses vertex positions based on triangulated face data, and exports a list of unified geometrical vertex positions.
+Mini Application built entirely with Java. Has a front-end GUI to process 3D files of type .obj. It parses vertex positions based on triangulated face data, and exports a list of unified geometrical vertex positions.
 
 E.g. usable for a triangle mesh in Bullet Physics.
 
