@@ -11,8 +11,15 @@ public class Vec3 {
 	public float y = 0.0f;
 	public float z = 0.0f;
 	
-	public Vec3() {
+	Vec3() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	void swapXAndY()
+	{
+		float temp_x = this.x;
+		this.x = this.y;
+		this.y = temp_x;
 	}
 	
 	Vec3 setX(float in_x)

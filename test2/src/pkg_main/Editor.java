@@ -24,7 +24,7 @@ class EditorShared
 	}
 }
 
-class Editor
+public class Editor
 {
 	
 	int canvas_width = 800;
